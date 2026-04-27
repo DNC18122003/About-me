@@ -10,8 +10,28 @@ export function SkillSection() {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const categories = ['All', 'Frontend', 'Backend', 'Tools'];
 
-  // Filter skills based on state. 
-  // Simplified by removing useMemo since this list is very small.
+  // Define animation variants for staggered effect
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { duration: 0.4, ease: "easeOut" }
+    }
+  };
+
+  // Filter skills based on state
   const filteredSkills = activeCategory === 'All' 
       ? SKILLS 
       : SKILLS.filter(skill => skill.category === activeCategory);
@@ -33,23 +53,31 @@ export function SkillSection() {
         ))}
       </div>
 
-      {/* Skills Grid - Premium Large Cards (Original Layout Style) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {/* Skills Grid - Animated & Premium */}
+      <motion.div 
+        key={activeCategory} // Reset animation when category changes
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+      >
         {filteredSkills.map((skill) => (
           <motion.div 
             key={skill.name}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.2 }}
-            className="bg-white/[0.02] border border-white/5 p-5 rounded-2xl flex items-center gap-5 hover:border-brand-primary/30 hover:bg-white/[0.04] transition-all group shadow-lg"
+            variants={itemVariants}
+            whileHover={{ y: -5, scale: 1.02, transition: { duration: 0.2 } }}
+            className="relative bg-white/[0.02] border border-white/5 p-5 rounded-2xl flex items-center gap-5 hover:border-brand-primary/40 hover:bg-white/[0.04] transition-colors group shadow-lg overflow-hidden"
           >
+            {/* Subtle Inner Glow on Hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+
             {/* Original Square Icon Box Style */}
-            <div className="w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-brand-primary group-hover:scale-110 group-hover:bg-brand-primary/10 transition-all shadow-inner shrink-0">
+            <div className="relative w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-brand-primary group-hover:scale-110 group-hover:bg-brand-primary/15 transition-all shadow-inner shrink-0">
               <skill.icon size={26} />
             </div>
             
             {/* Skill Content */}
-            <div className="flex-1">
+            <div className="relative flex-1">
               <h3 className="font-bold text-[16px] text-white/90 group-hover:text-white transition-colors">
                 {skill.name}
               </h3>
@@ -59,10 +87,10 @@ export function SkillSection() {
             </div>
 
             {/* Premium Accent Dot */}
-            <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-brand-primary opacity-0 group-hover:opacity-100 group-hover:scale-125 transition-all shadow-[0_0_10px_rgba(59,130,246,1)]" />
+            <div className="relative hidden sm:block w-1.5 h-1.5 rounded-full bg-brand-primary opacity-0 group-hover:opacity-100 group-hover:scale-125 transition-all shadow-[0_0_10px_rgba(59,130,246,1)]" />
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
