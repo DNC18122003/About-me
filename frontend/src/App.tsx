@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Command, Folder, Cpu, Github, Settings as SettingsIcon } from 'lucide-react';
+import { Command, Folder, Cpu, Github, Mail } from 'lucide-react';
 
 // Import Types & Data
 import { TabType, PERSONAL_INFO } from './data';
@@ -14,15 +14,15 @@ import { Sidebar } from './sections/Sidebar';
 import { HomeSection } from './sections/HomeSection';
 import { ProjectSection } from './sections/ProjectSection';
 import { SkillSection } from './sections/SkillSection';
-import { SettingsSection } from './sections/SettingsSection';
+import { ContactSection } from './sections/ContactSection';
 
 export default function App() {
   // State to track which tab is currently active
   const [activeTab, setActiveTab] = useState<TabType>('home');
 
-  // Simple function to switch to settings
+  // Simple function to switch to contact section
   const handleContactClick = () => {
-    setActiveTab('settings');
+    setActiveTab('contact');
   };
 
   // Function to render the correct section based on state
@@ -31,7 +31,7 @@ export default function App() {
       case 'home': return <HomeSection key="home" />;
       case 'project': return <ProjectSection key="project" />;
       case 'skill': return <SkillSection key="skill" />;
-      case 'settings': return <SettingsSection key="settings" />;
+      case 'contact': return <ContactSection key="contact" />;
       default: return <HomeSection key="home" />;
     }
   };
@@ -92,7 +92,7 @@ export default function App() {
           <div className="w-px h-8 md:h-10 bg-white/20 mx-1" />
           
           <DockIcon href={PERSONAL_INFO.github} color="bg-zinc-800" icon={<Github size={22} />} label="GitHub" />
-          <DockIcon isActive={activeTab === 'settings'} onClick={() => setActiveTab('settings')} color="bg-brand-secondary" icon={<SettingsIcon size={22} />} label="Settings" />
+          <DockIcon isActive={activeTab === 'contact'} onClick={() => setActiveTab('contact')} color="bg-brand-secondary" icon={<Mail size={22} />} label="Contact Me" />
         </div>
       </motion.div>
     </div>

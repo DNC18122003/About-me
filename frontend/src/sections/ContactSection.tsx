@@ -1,11 +1,11 @@
 import React from 'react';
-import { Settings, Mail, Phone, Github, Facebook, Download, FileText } from 'lucide-react';
+import { Mail, Phone, Github, Facebook } from 'lucide-react';
 import { motion } from 'motion/react';
 import { SectionHeader } from '../components/SectionHeader';
 import { PERSONAL_INFO } from '../data';
 
-// The Settings and Contact Tab Content
-export function SettingsSection() {
+// The Contact Tab Content
+export function ContactSection() {
   
   // Define an array of contact methods for easy mapping and rendering
   const CONTACTS = [
@@ -16,7 +16,7 @@ export function SettingsSection() {
       link: `mailto:${PERSONAL_INFO.email}`, 
       color: "text-red-400", 
       bg: "bg-red-400/10", 
-      hover: "group-hover:bg-red-400 group-hover:shadow-red-400/20" 
+      hover: "group-hover:bg-red-400 group-hover:text-white group-hover:shadow-red-400/20" 
     },
     { 
       label: "Phone Number", 
@@ -25,7 +25,7 @@ export function SettingsSection() {
       link: `tel:${PERSONAL_INFO.phone}`, 
       color: "text-green-400", 
       bg: "bg-green-400/10", 
-      hover: "group-hover:bg-green-400 group-hover:shadow-green-400/20" 
+      hover: "group-hover:bg-green-400 group-hover:text-white group-hover:shadow-green-400/20" 
     },
     { 
       label: "Facebook", 
@@ -34,7 +34,7 @@ export function SettingsSection() {
       link: PERSONAL_INFO.facebook, 
       color: "text-blue-500", 
       bg: "bg-blue-500/10", 
-      hover: "group-hover:bg-blue-500 group-hover:shadow-blue-500/20" 
+      hover: "group-hover:bg-blue-500 group-hover:text-white group-hover:shadow-blue-500/20" 
     },
     { 
       label: "GitHub", 
@@ -43,13 +43,13 @@ export function SettingsSection() {
       link: PERSONAL_INFO.github, 
       color: "text-white", 
       bg: "bg-white/10", 
-      hover: "group-hover:bg-white group-hover:text-surface-950 group-hover:shadow-white/20" 
+      hover: "group-hover:bg-white group-hover:text-[#18181a] group-hover:shadow-white/20" 
     },
   ];
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="pb-8">
-      <SectionHeader title="Settings" icon={Settings} subtitle="Contact Information." />
+      <SectionHeader title="Contact Me" icon={Mail} subtitle="Let's build something together." />
       
       {/* Contact Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
@@ -62,7 +62,7 @@ export function SettingsSection() {
             className="bg-[#18181a] border border-white/5 p-6 rounded-3xl flex items-center gap-5 hover:border-white/10 transition-all duration-300 group hover:-translate-y-1 shadow-lg"
           >
             {/* Contact Icon Box */}
-            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-md ${contact.bg} ${contact.color} ${contact.hover} group-hover:text-white group-hover:scale-110`}>
+            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-md ${contact.bg} ${contact.color} ${contact.hover} group-hover:scale-110`}>
               <contact.icon size={24} />
             </div>
             

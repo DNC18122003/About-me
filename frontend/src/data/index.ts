@@ -19,7 +19,7 @@ export interface Skill {
   category: 'Frontend' | 'Backend' | 'Tools';
 }
 
-export type TabType = 'home' | 'project' | 'skill' | 'settings';
+export type TabType = 'home' | 'project' | 'skill' | 'contact';
 
 // Static Data
 export const PERSONAL_INFO = {
