@@ -33,7 +33,7 @@ export function SkillSection() {
         ))}
       </div>
 
-      {/* Skills Grid */}
+      {/* Skills Grid - Premium Large Cards (Original Layout Style) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {filteredSkills.map((skill) => (
           <motion.div 
@@ -41,29 +41,25 @@ export function SkillSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
-            className="bg-white/[0.02] border border-white/5 p-5 rounded-2xl flex items-center gap-4 hover:border-brand-primary/30 transition-colors group shadow-lg"
+            className="bg-white/[0.02] border border-white/5 p-5 rounded-2xl flex items-center gap-5 hover:border-brand-primary/30 hover:bg-white/[0.04] transition-all group shadow-lg"
           >
-            {/* Icon */}
-            <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-brand-primary group-hover:scale-110 group-hover:bg-brand-primary/20 transition-all">
-              <skill.icon size={22} />
+            {/* Original Square Icon Box Style */}
+            <div className="w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-brand-primary group-hover:scale-110 group-hover:bg-brand-primary/10 transition-all shadow-inner shrink-0">
+              <skill.icon size={26} />
             </div>
             
-            {/* Skill Level Details */}
+            {/* Skill Content */}
             <div className="flex-1">
-              <div className="flex justify-between mb-2">
-                <h3 className="font-bold text-[13px]">{skill.name}</h3>
-                <span className="text-[11px] font-bold text-neutral-500">{skill.level}%</span>
-              </div>
-              <div className="h-1.5 bg-white/5 rounded-full overflow-hidden relative">
-                {/* Progress bar animation */}
-                <motion.div 
-                  initial={{ width: 0 }} 
-                  animate={{ width: `${skill.level}%` }} 
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="h-full bg-gradient-to-r from-brand-primary to-brand-secondary" 
-                />
-              </div>
+              <h3 className="font-bold text-[16px] text-white/90 group-hover:text-white transition-colors">
+                {skill.name}
+              </h3>
+              <p className="text-[10px] text-neutral-500 uppercase tracking-[0.2em] font-black mt-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                {skill.category}
+              </p>
             </div>
+
+            {/* Premium Accent Dot */}
+            <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-brand-primary opacity-0 group-hover:opacity-100 group-hover:scale-125 transition-all shadow-[0_0_10px_rgba(59,130,246,1)]" />
           </motion.div>
         ))}
       </div>
